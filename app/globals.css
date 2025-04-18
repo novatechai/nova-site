@@ -177,4 +177,15 @@
     background-size: 50px 50px, 50px 50px, 200px 200px;
     background-position: 0 0, 0 0, 25px 25px;
   }
+  
+  /* Tech grid pattern for CTA section */
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(to right, var(--primary)/20 1px, transparent 1px),
+      linear-gradient(to bottom, var(--primary)/20 1px, transparent 1px),
+      linear-gradient(to right, var(--accent)/10 0.5px, transparent 0.5px),
+      linear-gradient(to bottom, var(--accent)/10 0.5px, transparent 0.5px);
+    background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
 }
