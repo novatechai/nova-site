@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, OrbitControls, MeshDistortMaterial } from "@react-three/drei";
 import * as THREE from 'three';
+import { useMediaQuery } from "@/app/hooks/useMediaQuery";
 
 // Animated card component with scroll-triggered animation
 const AnimatedCard = ({ children, index = 0, className = "", delay = 0.1 }: {
@@ -506,6 +507,8 @@ export default function NovaVoice() {
     }
   ];
 
+  const isMobile = useMediaQuery("(max-width: 640px)");
+
   return (
     <main className="flex flex-col items-center min-h-screen pt-20 pb-12 space-y-16 md:space-y-24 relative">
       {/* Cosmic atmosphere effects with parallax */}
@@ -519,18 +522,18 @@ export default function NovaVoice() {
       ></motion.div>
       
       {/* Hero section */}
-      <section className="container px-4 mx-auto mt-6 z-10">
+      <section className="container px-4 mx-auto mt-6 md:mt-10 z-10">
         <div className="grid gap-8 lg:grid-cols-[1fr_1fr] items-center max-w-7xl mx-auto">
           <motion.div 
-            className="flex flex-col space-y-6 md:space-y-8 order-2 lg:order-1"
+            className="flex flex-col space-y-4 md:space-y-8 order-2 lg:order-1"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             {/* Hero content - left side */}
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               <motion.h1 
-                className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl"
+                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tighter"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
@@ -538,7 +541,7 @@ export default function NovaVoice() {
                 Nova Voice
               </motion.h1>
               <motion.p 
-                className="max-w-[600px] text-muted-foreground text-lg md:text-xl"
+                className="max-w-[600px] text-muted-foreground text-base md:text-lg lg:text-xl"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4 }}
@@ -549,16 +552,16 @@ export default function NovaVoice() {
             
             {/* CTA buttons */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-3 md:gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
             >
-              <Button size="lg" className="group relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300">
+              <Button size="lg" className="group relative overflow-hidden bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 w-full sm:w-auto">
                 <span className="relative z-10">Try Demo</span>
                 <span className="absolute inset-0 bg-gradient-to-r from-primary/50 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md"></span>
               </Button>
-              <Button size="lg" variant="outline" className="group relative overflow-hidden shadow-sm hover:shadow-md transition-all duration-300">
+              <Button size="lg" variant="outline" className="group relative overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 w-full sm:w-auto">
                 <span className="relative z-10">Contact Us</span>
                 <span className="absolute inset-0 bg-gradient-to-r from-muted/5 to-muted/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md"></span>
               </Button>
@@ -567,7 +570,7 @@ export default function NovaVoice() {
           
           {/* Hero visual - right side */}
           <motion.div 
-            className="h-[350px] sm:h-[450px] lg:h-[600px] w-full relative order-1 lg:order-2"
+            className="h-[250px] xs:h-[300px] sm:h-[350px] md:h-[400px] lg:h-[500px] w-full relative order-1 lg:order-2"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -614,7 +617,7 @@ export default function NovaVoice() {
             </motion.p>
           </motion.div>
           
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:gap-6 grid-cols-1 xs:grid-cols-2 lg:grid-cols-4">
             {features.map((feature, index) => (
               <FeatureCard
                 key={feature.title}
@@ -641,8 +644,8 @@ export default function NovaVoice() {
           </div>
           
           {/* Streaming ASR */}
-          <div className="grid gap-12 lg:grid-cols-2 items-center">
-            <AnimatedCard className="space-y-6 order-2 lg:order-1">
+          <div className="grid gap-8 md:gap-12 lg:grid-cols-2 items-center">
+            <AnimatedCard className="space-y-4 md:space-y-6 order-2 lg:order-1">
               <div className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <Mic className="h-8 w-8" />
               </div>
@@ -1065,15 +1068,15 @@ export default function NovaVoice() {
           </motion.div>
           
           <Tabs defaultValue="entertainment" className="w-full">
-            <TabsList className="grid w-full max-w-xl mx-auto grid-cols-1 sm:grid-cols-4">
-              <TabsTrigger value="entertainment">Entertainment</TabsTrigger>
-              <TabsTrigger value="business">Business</TabsTrigger>
-              <TabsTrigger value="healthcare">Healthcare</TabsTrigger>
-              <TabsTrigger value="education">Education</TabsTrigger>
+            <TabsList className="grid w-full max-w-xl mx-auto grid-cols-2 xs:grid-cols-4 gap-1 xs:gap-0">
+              <TabsTrigger value="entertainment" className="text-xs md:text-sm">Entertainment</TabsTrigger>
+              <TabsTrigger value="business" className="text-xs md:text-sm">Business</TabsTrigger>
+              <TabsTrigger value="healthcare" className="text-xs md:text-sm">Healthcare</TabsTrigger>
+              <TabsTrigger value="education" className="text-xs md:text-sm">Education</TabsTrigger>
             </TabsList>
             <TabsContent value="entertainment" className="mt-8">
-              <div className="grid gap-8 lg:grid-cols-2 items-center">
-                <AnimatedCard className="space-y-4">
+              <div className="grid gap-6 lg:gap-8 lg:grid-cols-2 items-center">
+                <AnimatedCard className="space-y-4 md:space-y-6 order-2 lg:order-1">
                   <h3 className="text-2xl font-bold">Entertainment & Media</h3>
                   <ul className="space-y-3">
                     <li className="flex gap-2 items-start">
@@ -1108,8 +1111,8 @@ export default function NovaVoice() {
               </div>
             </TabsContent>
             <TabsContent value="business" className="mt-8">
-              <div className="grid gap-8 lg:grid-cols-2 items-center">
-                <AnimatedCard className="space-y-4">
+              <div className="grid gap-6 lg:gap-8 lg:grid-cols-2 items-center">
+                <AnimatedCard className="space-y-4 md:space-y-6 order-2 lg:order-1">
                   <h3 className="text-2xl font-bold">Business & Customer Service</h3>
                   <ul className="space-y-3">
                     <li className="flex gap-2 items-start">
@@ -1144,8 +1147,8 @@ export default function NovaVoice() {
               </div>
             </TabsContent>
             <TabsContent value="healthcare" className="mt-8">
-              <div className="grid gap-8 lg:grid-cols-2 items-center">
-                <AnimatedCard className="space-y-4">
+              <div className="grid gap-6 lg:gap-8 lg:grid-cols-2 items-center">
+                <AnimatedCard className="space-y-4 md:space-y-6 order-2 lg:order-1">
                   <h3 className="text-2xl font-bold">Healthcare</h3>
                   <ul className="space-y-3">
                     <li className="flex gap-2 items-start">
@@ -1180,8 +1183,8 @@ export default function NovaVoice() {
               </div>
             </TabsContent>
             <TabsContent value="education" className="mt-8">
-              <div className="grid gap-8 lg:grid-cols-2 items-center">
-                <AnimatedCard className="space-y-4">
+              <div className="grid gap-6 lg:gap-8 lg:grid-cols-2 items-center">
+                <AnimatedCard className="space-y-4 md:space-y-6 order-2 lg:order-1">
                   <h3 className="text-2xl font-bold">Education</h3>
                   <ul className="space-y-3">
                     <li className="flex gap-2 items-start">
@@ -1226,19 +1229,19 @@ export default function NovaVoice() {
             <h2 className="text-3xl font-bold tracking-tighter">Experience Nova Voice</h2>
             <p className="text-muted-foreground">Try our interactive demo to see the power of our voice AI in action.</p>
             
-            <div className="grid gap-6 sm:grid-cols-2">
-              <Button className="h-24 text-lg justify-start px-6 space-x-4 bg-primary/10 hover:bg-primary/20 text-primary hover:text-primary border-2 border-primary/20">
-                <Mic className="h-8 w-8" />
+            <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2">
+              <Button className="h-auto py-4 text-base justify-start px-4 sm:px-6 space-x-3 sm:space-x-4 bg-primary/10 hover:bg-primary/20 text-primary hover:text-primary border-2 border-primary/20">
+                <Mic className="h-6 w-6 sm:h-8 sm:w-8 shrink-0" />
                 <div className="text-left">
                   <div className="font-semibold">Try Voice Clone</div>
-                  <div className="text-sm opacity-80">Clone any voice in seconds</div>
+                  <div className="text-xs sm:text-sm opacity-80">Clone any voice in seconds</div>
                 </div>
               </Button>
-              <Button className="h-24 text-lg justify-start px-6 space-x-4 bg-primary/10 hover:bg-primary/20 text-primary hover:text-primary border-2 border-primary/20">
-                <MessageSquare className="h-8 w-8" />
+              <Button className="h-auto py-4 text-base justify-start px-4 sm:px-6 space-x-3 sm:space-x-4 bg-primary/10 hover:bg-primary/20 text-primary hover:text-primary border-2 border-primary/20">
+                <MessageSquare className="h-6 w-6 sm:h-8 sm:w-8 shrink-0" />
                 <div className="text-left">
                   <div className="font-semibold">Voice Assistant</div>
-                  <div className="text-sm opacity-80">Talk with our AI assistant</div>
+                  <div className="text-xs sm:text-sm opacity-80">Talk with our AI assistant</div>
                 </div>
               </Button>
             </div>
@@ -1263,9 +1266,9 @@ export default function NovaVoice() {
             </p>
           </div>
           
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3].map((i) => (
-              <AnimatedCard key={i} index={i-1} className="bg-card border p-6 rounded-xl shadow-sm">
+              <AnimatedCard key={i} index={i-1} className="bg-card border p-4 md:p-6 rounded-xl shadow-sm">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
                     {i === 1 ? 'NT' : i === 2 ? 'GS' : 'VM'}
@@ -1300,11 +1303,11 @@ export default function NovaVoice() {
             <p className="text-muted-foreground max-w-[600px] mx-auto">
               Join the next generation of voice AI technology and unlock new possibilities for your business.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button size="lg" className="bg-primary hover:bg-primary/90">
+            <div className="flex flex-col xs:flex-row gap-3 md:gap-4 justify-center pt-4">
+              <Button size="lg" className="bg-primary hover:bg-primary/90 w-full xs:w-auto">
                 Get Started Now
               </Button>
-              <Button size="lg" variant="outline">
+              <Button size="lg" variant="outline" className="w-full xs:w-auto">
                 Talk to an Expert
               </Button>
             </div>
@@ -1324,9 +1327,9 @@ export default function NovaVoice() {
             </p>
           </div>
           
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8">
+          <div className="grid gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-6 md:mt-8">
             {/* Performance Metrics Card */}
-            <AnimatedCard className="border rounded-xl p-6 bg-card space-y-4">
+            <AnimatedCard className="border rounded-xl p-4 md:p-6 bg-card space-y-3 md:space-y-4">
               <h3 className="text-xl font-bold flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
                 Performance Metrics
@@ -1375,7 +1378,7 @@ export default function NovaVoice() {
             </AnimatedCard>
             
             {/* Technology Stack Card */}
-            <AnimatedCard className="border rounded-xl p-6 bg-card space-y-4">
+            <AnimatedCard className="border rounded-xl p-4 md:p-6 bg-card space-y-3 md:space-y-4">
               <h3 className="text-xl font-bold flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><path d="M20 17a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2"/><path d="M14 13h2"/><path d="M20 17H4a2 2 0 1 0 0 4h16a2 2 0 1 0 0-4Z"/><path d="M12 17v4"/></svg>
                 Technology Stack
@@ -1424,7 +1427,7 @@ export default function NovaVoice() {
             </AnimatedCard>
             
             {/* Integration Options Card */}
-            <AnimatedCard className="border rounded-xl p-6 bg-card space-y-4">
+            <AnimatedCard className="border rounded-xl p-4 md:p-6 bg-card space-y-3 md:space-y-4 md:col-span-2 lg:col-span-1">
               <h3 className="text-xl font-bold flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary"><path d="M12 4v6a2 2 0 0 0 2 2h4.3a2 2 0 0 0 1.6-.8l2.7-3.2a2 2 0 0 0 0-2.4L20 2.8a2 2 0 0 0-1.6-.8H14a2 2 0 0 0-2 2Z"/><path d="M12 20v-6a2 2 0 0 0-2-2H5.7a2 2 0 0 0-1.6.8L1.3 15.9a2 2 0 0 0 0 2.4L4 21.2a2 2 0 0 0 1.6.8H10a2 2 0 0 0 2-2Z"/></svg>
                 Integration Options
