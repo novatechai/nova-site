@@ -29,7 +29,7 @@ const solutions = [
   },
   {
     title: "NovaVoice",
-    href: "/solutions/novavoice",
+    href: "/solutions/nova-voice",
     description: "Complete voice studio offering TTS, speech-to-text, and interactive speech solutions."
   },
   {
